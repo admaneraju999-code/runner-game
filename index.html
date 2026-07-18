@@ -23,6 +23,23 @@
       <button class="touch-btn" id="touchSpecial">✦</button>
       <button class="touch-btn" id="touchSprint">💨</button>
     </div>
+    <div id="deviceSelector">
+      <h2>CHOOSE YOUR MODE</h2>
+      <p class="device-sub">How do you want to play?</p>
+      <div class="device-buttons">
+        <button class="device-btn" id="mobileMode">
+          <span class="device-icon">📱</span>
+          <span class="device-label">Mobile</span>
+          <span class="device-desc">Fill screen • Touch controls</span>
+        </button>
+        <button class="device-btn" id="pcMode">
+          <span class="device-icon">💻</span>
+          <span class="device-label">PC</span>
+          <span class="device-desc">Aspect ratio • Keyboard</span>
+        </button>
+      </div>
+      <p class="device-remember">You can change this later in Settings</p>
+    </div>
     <div id="overlayMessage" style="display:none;"></div>
     <div id="gameOverlay">
       <div id="startScreen">
@@ -60,6 +77,11 @@
         <button class="toggle-switch" id="fullscreenToggle">
           <span class="toggle-knob"></span>
         </button>
+      </div>
+      <div class="setting-row">
+        <span class="setting-label">Mode</span>
+        <button class="setting-mode-btn" id="switchToMobile">📱 Mobile</button>
+        <button class="setting-mode-btn" id="switchToPC">💻 PC</button>
       </div>
       <button class="close-settings" id="closeSettings">CLOSE</button>
     </div>

@@ -376,10 +376,106 @@ button:hover {
 #settingsPanel .toggle-switch.active .toggle-knob {
   left: 22px;
 }
+#settingsPanel .setting-mode-btn {
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.1);
+  color: #aaa;
+  padding: 6px 14px;
+  font-size: 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  letter-spacing: 0;
+  box-shadow: none;
+  transition: all 0.2s;
+}
+#settingsPanel .setting-mode-btn:hover {
+  background: rgba(255,255,255,0.12);
+  color: #fff;
+  transform: none;
+  box-shadow: none;
+}
+#settingsPanel .setting-mode-btn.active {
+  border-color: #e94560;
+  color: #fff;
+  background: rgba(233,69,96,0.15);
+}
 #settingsPanel .close-settings {
   margin-top: 28px;
   padding: 8px 32px;
   font-size: 13px;
+}
+
+/* --- Device Selector --- */
+#deviceSelector {
+  position: absolute;
+  inset: 0;
+  background: rgba(5,5,20,0.95);
+  z-index: 30;
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 30px;
+  backdrop-filter: blur(12px);
+}
+#deviceSelector.show {
+  display: flex;
+}
+#deviceSelector h2 {
+  color: #fff;
+  font-size: 24px;
+  letter-spacing: 3px;
+  margin-bottom: 4px;
+}
+#deviceSelector .device-sub {
+  color: #888;
+  font-size: 13px;
+  margin-bottom: 24px;
+}
+.device-buttons {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.device-btn {
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 12px;
+  padding: 24px 28px;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  transition: all 0.25s;
+  min-width: 140px;
+  box-shadow: none;
+  letter-spacing: 0;
+}
+.device-btn:hover {
+  background: rgba(255,255,255,0.1);
+  border-color: rgba(255,215,0,0.3);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 30px rgba(0,0,0,0.3);
+}
+.device-btn .device-icon {
+  font-size: 36px;
+}
+.device-btn .device-label {
+  font-size: 18px;
+  font-weight: 700;
+  color: #fff;
+}
+.device-btn .device-desc {
+  font-size: 11px;
+  color: #888;
+}
+#deviceSelector .device-remember {
+  margin-top: 20px;
+  font-size: 11px;
+  color: #555;
 }
 
 /* --- Orientation Prompt --- */

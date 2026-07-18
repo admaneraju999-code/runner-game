@@ -1634,13 +1634,47 @@ resetGame = function() {
 
 // --- Canvas Scaling ---
 function resizeCanvas() {
-  const container = document.getElementById('gameContainer');
-  const maxW = window.innerWidth - 4;
-  const maxH = window.innerHeight - 4;
-  const scale = Math.min(maxW / W, maxH / H);
-  canvas.style.width = Math.floor(W * scale) + 'px';
-  canvas.style.height = Math.floor(H * scale) + 'px';
+  if (deviceMode === 'mobile') {
+    canvas.style.width = '100%';
+    canvas.style.height = '100%';
+    document.getElementById('gameContainer').style.borderRadius = '0';
+  } else {
+    const maxW = window.innerWidth - 4;
+    const maxH = window.innerHeight - 4;
+    const scale = Math.min(maxW / W, maxH / H);
+    canvas.style.width = Math.floor(W * scale) + 'px';
+    canvas.style.height = Math.floor(H * scale) + 'px';
+  }
 }
+
+// --- Device Mode ---
+let deviceMode = localStorage.getItem('runnerDevice') || null;
+const deviceSelector = document.getElementById('deviceSelector');
+
+function setDeviceMode(mode) {
+  deviceMode = mode;
+  localStorage.setItem('runnerDevice', mode);
+  deviceSelector.classList.remove('show');
+  if (mode === 'mobile') {
+    isTouchDevice = true;
+    if (touchControls) touchControls.style.display = 'block';
+    document.getElementById('fullscreenBtn').style.display = 'none';
+    document.getElementById('settingsBtn').style.display = 'none';
+  }
+  document.getElementById('switchToMobile').classList.toggle('active', mode === 'mobile');
+  document.getElementById('switchToPC').classList.toggle('active', mode === 'pc');
+  if (mode === 'pc' && orientPrompt) orientPrompt.style.display = 'none';
+  resizeCanvas();
+}
+
+if (!deviceMode) {
+  deviceSelector.classList.add('show');
+} else {
+  setDeviceMode(deviceMode);
+}
+
+document.getElementById('mobileMode').addEventListener('click', () => setDeviceMode('mobile'));
+document.getElementById('pcMode').addEventListener('click', () => setDeviceMode('pc'));
 
 // --- Fullscreen ---
 let isFullscreen = false;
@@ -1704,6 +1738,15 @@ if (soundToggleEl) {
 
 const fsToggle = document.getElementById('fullscreenToggle');
 if (fsToggle) fsToggle.addEventListener('click', toggleFullscreen);
+
+document.getElementById('switchToMobile').addEventListener('click', () => {
+  setDeviceMode('mobile');
+  settingsPanel.classList.remove('show');
+});
+document.getElementById('switchToPC').addEventListener('click', () => {
+  setDeviceMode('pc');
+  settingsPanel.classList.remove('show');
+});
 
 // --- Procedural Sound Effects ---
 let audioCtx = null;
