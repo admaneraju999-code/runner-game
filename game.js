@@ -1615,21 +1615,21 @@ const touchControls = document.getElementById('touchControls');
 let isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
 if (isTouchDevice) touchControls.style.display = 'block';
 
-// Show touch controls only during gameplay
-const origStartGame = startGame;
+// Touch controls permanent in mobile mode
+const origStartGame2 = startGame;
 startGame = function() {
-  origStartGame();
+  origStartGame2();
   if (isTouchDevice) touchControls.style.display = 'block';
 };
-const origGameOver = gameOver;
+const origGameOver2 = gameOver;
 gameOver = function() {
-  origGameOver();
-  if (isTouchDevice) touchControls.style.display = 'none';
+  origGameOver2();
+  if (isTouchDevice) touchControls.style.display = 'block';
 };
-const origReset = resetGame;
+const origReset2 = resetGame;
 resetGame = function() {
-  origReset();
-  if (isTouchDevice) touchControls.style.display = 'none';
+  origReset2();
+  if (isTouchDevice) touchControls.style.display = 'block';
 };
 
 // --- Canvas Scaling ---
