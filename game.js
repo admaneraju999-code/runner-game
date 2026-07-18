@@ -1634,11 +1634,11 @@ resetGame = function() {
 
 // --- Canvas Scaling ---
 function resizeCanvas() {
+  const container = document.getElementById('gameContainer');
   if (deviceMode === 'mobile') {
-    canvas.style.width = '100%';
-    canvas.style.height = '100%';
-    document.getElementById('gameContainer').style.borderRadius = '0';
+    container.classList.add('mobile-mode');
   } else {
+    container.classList.remove('mobile-mode');
     const maxW = window.innerWidth - 4;
     const maxH = window.innerHeight - 4;
     const scale = Math.min(maxW / W, maxH / H);
@@ -1657,8 +1657,9 @@ function setDeviceMode(mode) {
   deviceSelector.classList.remove('show');
   if (mode === 'mobile') {
     isTouchDevice = true;
-    document.getElementById('fullscreenBtn').style.display = 'none';
-    document.getElementById('settingsBtn').style.display = 'none';
+    document.body.classList.add('mobile-active');
+  } else {
+    document.body.classList.remove('mobile-active');
   }
   document.getElementById('switchToMobile').classList.toggle('active', mode === 'mobile');
   document.getElementById('switchToPC').classList.toggle('active', mode === 'pc');
