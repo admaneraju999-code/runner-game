@@ -1581,6 +1581,17 @@ setupTouchButton('touchAttack', 'KeyJ');
 setupTouchButton('touchSpecial', 'KeyK');
 setupTouchButton('touchSprint', 'ShiftLeft');
 
+// Pause button
+const touchPause = document.getElementById('touchPause');
+if (touchPause) {
+  touchPause.addEventListener('touchstart', (e) => {
+    e.preventDefault();
+    if (!gameRunning) return;
+    paused = !paused;
+    if (dialogueActive) { dialogueActive = false; gamePaused = false; }
+  });
+}
+
 // Jump button (Space) with tap-to-restart/start
 const touchJump = document.getElementById('touchJump');
 if (touchJump) {
