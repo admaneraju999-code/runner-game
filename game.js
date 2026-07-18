@@ -1658,6 +1658,7 @@ function setDeviceMode(mode) {
   if (mode === 'mobile') {
     isTouchDevice = true;
     document.body.classList.add('mobile-active');
+    if (touchControls) touchControls.style.display = 'block';
   } else {
     document.body.classList.remove('mobile-active');
   }
