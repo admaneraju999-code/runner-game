@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
+  <title>Spectral Chronicles — Endless Runner</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div id="gameContainer">
+    <canvas id="gameCanvas" width="600" height="400" tabindex="0"></canvas>
+    <div id="ui">
+      <span id="usernameDisplay"></span>
+      <span id="worldDisplay">Verdant Canopy</span>
+      <span id="scoreDisplay">✦ 0</span>
+      <span id="highScoreDisplay">Best: 0</span>
+    </div>
+    <div id="touchControls">
+      <button class="touch-btn" id="touchLeft">◀</button>
+      <button class="touch-btn" id="touchRight">▶</button>
+      <button class="touch-btn" id="touchJump">▲</button>
+      <button class="touch-btn" id="touchAttack">⚔</button>
+      <button class="touch-btn" id="touchSpecial">✦</button>
+      <button class="touch-btn" id="touchSprint">💨</button>
+    </div>
+    <div id="overlayMessage" style="display:none;"></div>
+    <div id="gameOverlay">
+      <div id="startScreen">
+        <h1>SPECTRAL CHRONICLES</h1>
+        <p class="subtitle">Endless Runner</p>
+        <p class="credits">Developed by <strong>Harsh .A</strong></p>
+        <p class="disclaimer">he is mentally unstable and weirdo<br/>if you get any glitch or bug please keep it up to you</p>
+        <p class="desc">this game is developed just for fun where our protagonist<br/>is running from his friends where they are bad guys</p>
+        <p class="hint">A/D — Move &nbsp;·&nbsp; Space — Jump &nbsp;·&nbsp; Shift — Sprint</p>
+        <p class="hint">J — Attack &nbsp;·&nbsp; K — Special &nbsp;·&nbsp; W — Climb &nbsp;·&nbsp; E — Interact</p>
+        <p class="hint">S — Crouch &nbsp;·&nbsp; Esc — Pause &nbsp;·&nbsp; F — Fullscreen</p>
+        <input type="text" id="usernameInput" placeholder="Enter name" maxlength="20" />
+        <button id="startBtn">BEGIN RUN</button>
+        <p class="small">High Score: <span id="menuHighScore">0</span></p>
+      </div>
+      <div id="gameOverScreen" style="display:none;">
+        <h1>ECHO LOST</h1>
+        <p id="finalScore"></p>
+        <p class="best">Best: <span id="gameOverHighScore">0</span></p>
+        <button id="restartBtn">TRY AGAIN</button>
+      </div>
+    </div>
+    <button id="fullscreenBtn">⛶</button>
+    <button id="settingsBtn">⚙</button>
+    <div id="settingsPanel">
+      <h2>SETTINGS</h2>
+      <div class="setting-row">
+        <span class="setting-label">Sound Effects</span>
+        <button class="toggle-switch active" id="soundToggle">
+          <span class="toggle-knob"></span>
+        </button>
+      </div>
+      <div class="setting-row">
+        <span class="setting-label">Fullscreen</span>
+        <button class="toggle-switch" id="fullscreenToggle">
+          <span class="toggle-knob"></span>
+        </button>
+      </div>
+      <button class="close-settings" id="closeSettings">CLOSE</button>
+    </div>
+    <div id="orientationPrompt">
+      <div class="icon">📱</div>
+      <p>Rotate your device to landscape for the best experience</p>
+      <span class="dismiss" id="dismissOrientation">Play in portrait anyway</span>
+    </div>
+    <div id="fpsCounter">-- FPS</div>
+  </div>
+  <script src="game.js"></script>
+</body>
+</html>
