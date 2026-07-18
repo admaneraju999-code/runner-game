@@ -690,7 +690,7 @@ function updateVillain() {
       w: vw, h: vh, frame: 0, lifetime: 480,
       type: isFront ? 'front' : 'back',
     });
-    villainCooldown = 300;
+    villainCooldown = 180;
   }
   if (villainCooldown > 0) villainCooldown--;
   if (villains.length === 0) return;
@@ -700,7 +700,7 @@ function updateVillain() {
     v.lifetime--;
     if (v.lifetime <= 0) {
       villains.splice(i, 1);
-      villainCooldown = 400;
+      villainCooldown = 250;
       continue;
     }
     const targetX = v.type === 'front' ? player.x + 200 : player.x - 120 - i * 80;
@@ -716,26 +716,26 @@ function updateVillain() {
         player.slowTimer = SLOW_DURATION;
         spawnPowerUpParticles(v.x + v.w / 2, v.y + v.h / 2, '#4FC3F7');
         villains.splice(i, 1);
-        villainCooldown = 250;
+        villainCooldown = 150;
         continue;
       }
       if (activePowerUp && activePowerUp.id === 'shadow') {
         v.x -= 200;
         spawnPowerUpParticles(v.x + v.w / 2, v.y + v.h / 2, '#7C4DFF');
         villains.splice(i, 1);
-        villainCooldown = 250;
+        villainCooldown = 150;
         continue;
       }
       takeDamage();
-      villainCooldown = 400;
+      villainCooldown = 250;
       villains.splice(i, 1);
       continue;
     }
 
     if (v.x + v.w < camera.x - 200) {
       villains.splice(i, 1);
-      villainCooldown = 800 + Math.floor(Math.random() * 400) - worldIndex * 50;
-      if (villainCooldown < 400) villainCooldown = 400;
+      villainCooldown = 500 + Math.floor(Math.random() * 300) - worldIndex * 50;
+      if (villainCooldown < 250) villainCooldown = 250;
     }
   }
 }
