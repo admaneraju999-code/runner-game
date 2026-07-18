@@ -1612,7 +1612,7 @@ canvas.addEventListener('touchmove', (e) => e.preventDefault());
 
 // Detect touch device to show controls
 const touchControls = document.getElementById('touchControls');
-const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+let isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
 if (isTouchDevice) touchControls.style.display = 'block';
 
 // Show touch controls only during gameplay
@@ -1657,7 +1657,6 @@ function setDeviceMode(mode) {
   deviceSelector.classList.remove('show');
   if (mode === 'mobile') {
     isTouchDevice = true;
-    if (touchControls) touchControls.style.display = 'block';
     document.getElementById('fullscreenBtn').style.display = 'none';
     document.getElementById('settingsBtn').style.display = 'none';
   }
