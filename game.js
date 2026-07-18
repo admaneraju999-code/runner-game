@@ -272,6 +272,7 @@ let nextGenX = 0;
 
 let villains = [];
 let villainCooldown = 0;
+let villainTransitionTimer = 0;
 
 let weatherType = 'none';
 let weatherParticles = [];
@@ -680,6 +681,20 @@ function updateEnemies() {
 // --- Villain ---
 function updateVillain() {
   const MAX_VILLAINS = 2;
+
+  if (villainTransitionTimer > 0) {
+    villainTransitionTimer--;
+    if (villainTransitionTimer === 0 && score >= 800) {
+      const vw = 90, vh = 135;
+      villains.push({
+        x: camera.x + W + 50, y: GROUND_Y - 135,
+        w: vw, h: vh, frame: 0, lifetime: 480,
+        type: 'front',
+      });
+      villainCooldown = 180;
+    }
+  }
+
   if (score >= 800 && villains.length < MAX_VILLAINS && villainCooldown === 0) {
     const isFront = villains.length % 2 === 1;
     const vw = isFront ? 90 : 120;
@@ -909,9 +924,13 @@ function update() {
       gamePaused = true;
       pauseTimer = 180;
     }, 2200);
+    villainTransitionTimer = 180;
     updateHUD();
   }
   if (worldTransition > 0) worldTransition--;
+  if (newWorld !== worldIndex) {
+    villainTransitionTimer = 180;
+  }
 
   speedMult = 1 + Math.min(score / 1500, 0.5);
   if (activePowerUp && activePowerUp.id === 'time') speedMult = 0.5;
@@ -1414,6 +1433,7 @@ function resetGame() {
 
   villains = [];
   villainCooldown = 0;
+  villainTransitionTimer = 0;
 
   weatherType = 'none';
   weatherParticles = [];
